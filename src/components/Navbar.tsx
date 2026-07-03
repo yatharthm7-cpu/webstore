@@ -28,7 +28,7 @@ export default function Navbar() {
           <div className="flex items-center space-x-8 xl:space-x-12">
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-3 group cursor-pointer flex-shrink-0">
-              <img src="/logo.png" alt="Soulberry Logo" className="w-10 h-10 lg:w-12 lg:h-12 object-contain group-hover:scale-105 transition-transform" />
+              <img src="/logo.png" alt="Soulberry Logo" className="w-10 h-10 lg:w-12 lg:h-12 object-contain group-hover:scale-105 transition-transform duration-300 ease-in-out" />
               <span className="font-display font-bold text-2xl lg:text-3xl tracking-tighter text-white whitespace-nowrap">
                 SOUL<span className="text-[var(--secondary)]">BERRY</span>
               </span>
@@ -44,7 +44,7 @@ export default function Navbar() {
                     key={link.name}
                     to={link.path}
                     className={cn(
-                      "flex items-center space-x-2 px-2 xl:px-4 py-2 rounded-md text-sm font-bold uppercase tracking-widest transition-all whitespace-nowrap",
+                      "flex items-center space-x-2 px-2 xl:px-4 py-2 rounded-md text-sm font-bold uppercase tracking-widest transition-all duration-300 ease-in-out whitespace-nowrap transform",
                       isActive 
                         ? "text-[var(--secondary)] scale-105" 
                         : "text-[var(--muted-foreground)] hover:text-[var(--secondary)] hover:scale-105"
@@ -58,7 +58,7 @@ export default function Navbar() {
               
               <div className="relative group">
                 <button className={cn(
-                  "flex items-center space-x-2 px-2 xl:px-4 py-2 rounded-md text-sm font-bold uppercase tracking-widest transition-all whitespace-nowrap",
+                  "flex items-center space-x-2 px-2 xl:px-4 py-2 rounded-md text-sm font-bold uppercase tracking-widest transition-all duration-300 ease-in-out whitespace-nowrap transform",
                   location.pathname.startsWith('/guides')
                     ? "text-[var(--secondary)] scale-105"
                     : "text-[var(--muted-foreground)] hover:text-[var(--secondary)] hover:scale-105"
@@ -75,10 +75,10 @@ export default function Navbar() {
                           key={link.name}
                           to={link.path}
                           className={cn(
-                            "block px-4 py-2 text-sm font-bold uppercase tracking-widest transition-colors",
+                            "block px-4 py-2 text-sm font-bold uppercase tracking-widest transition-all duration-300 ease-in-out transform origin-left",
                             isActive
-                              ? "text-[var(--secondary)] bg-[var(--muted)]"
-                              : "text-[var(--muted-foreground)] hover:text-[var(--secondary)] hover:bg-[var(--muted)]"
+                              ? "text-[var(--secondary)] bg-[var(--muted)] scale-105"
+                              : "text-[var(--muted-foreground)] hover:text-[var(--secondary)] hover:bg-[var(--muted)] hover:scale-105"
                           )}
                         >
                           {link.name}
@@ -103,7 +103,7 @@ export default function Navbar() {
                 <span className="text-sm font-bold text-white">{user.username}</span>
                 <button 
                   onClick={logout}
-                  className="text-[var(--muted-foreground)] hover:text-red-400 ml-2 transition-all hover:scale-110"
+                  className="text-[var(--muted-foreground)] hover:text-red-400 ml-2 transition-all duration-300 ease-in-out hover:scale-110"
                   title="Logout"
                 >
                   <LogOut className="w-4 h-4" />
@@ -112,7 +112,7 @@ export default function Navbar() {
             ) : (
               <Link
                 to="/login"
-                className="flex items-center space-x-2 px-4 py-2 bg-[var(--primary)] hover:bg-[#A31845] text-white rounded-md text-sm font-bold uppercase tracking-wider transition-all hover:scale-105"
+                className="flex items-center space-x-2 px-4 py-2 bg-[var(--primary)] hover:bg-[#A31845] text-white rounded-md text-sm font-bold uppercase tracking-wider transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg hover:shadow-[var(--primary)]/20"
               >
                 <LogIn className="w-4 h-4" />
                 <span>Login</span>
@@ -160,7 +160,7 @@ export default function Navbar() {
                   to={link.path}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={cn(
-                    "flex items-center space-x-3 px-3 py-3 rounded-md text-base font-medium",
+                    "flex items-center space-x-3 px-3 py-3 rounded-md text-base font-medium transition-all duration-200 ease-in-out transform active:scale-95",
                     isActive 
                       ? "bg-[var(--primary)] text-white" 
                       : "text-[var(--muted-foreground)] hover:bg-[var(--muted)] hover:text-[var(--foreground)]"
@@ -185,7 +185,7 @@ export default function Navbar() {
                     to={link.path}
                     onClick={() => setIsMobileMenuOpen(false)}
                     className={cn(
-                      "flex items-center space-x-3 px-3 py-3 rounded-md text-base font-medium",
+                      "flex items-center space-x-3 px-3 py-3 rounded-md text-base font-medium transition-all duration-200 ease-in-out transform active:scale-95",
                       isActive 
                         ? "bg-[var(--primary)] text-white" 
                         : "text-[var(--muted-foreground)] hover:bg-[var(--muted)] hover:text-[var(--foreground)]"
