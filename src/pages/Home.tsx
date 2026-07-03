@@ -101,7 +101,7 @@ export default function Home() {
             <ServerStatus variant="hero" />
             <Link 
               to="/store"
-              className="px-8 py-4 bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] hover:from-[var(--secondary)] hover:to-[var(--primary)] text-white rounded-lg font-bold text-sm uppercase tracking-widest transition-all shadow-[0_0_15px_rgba(139,92,246,0.5)] flex items-center justify-center hover:scale-105 hover:shadow-[0_0_25px_rgba(255,102,153,0.6)]"
+              className="px-8 py-4 bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] hover:from-[var(--secondary)] hover:to-[var(--primary)] text-white rounded-lg font-bold text-sm uppercase tracking-widest transition-all duration-300 ease-in-out transform shadow-[0_0_15px_rgba(139,92,246,0.5)] flex items-center justify-center hover:scale-105 hover:shadow-[0_0_25px_rgba(255,102,153,0.6)]"
             >
               Visit Store <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
@@ -259,7 +259,7 @@ function FAQItem({ question, answer, index }: { question: string, answer: string
       className="border border-[var(--border)] rounded-lg bg-[var(--card)] overflow-hidden"
     >
       <button 
-        className="w-full px-6 py-4 flex justify-between items-center text-left focus:outline-none hover:bg-[var(--muted)] transition-colors"
+        className="w-full px-6 py-4 flex justify-between items-center text-left focus:outline-none hover:bg-[var(--muted)] transition-colors duration-300 ease-in-out"
         onClick={() => setIsOpen(!isOpen)}
       >
         <span className="font-bold text-[var(--foreground)]">{question}</span>
