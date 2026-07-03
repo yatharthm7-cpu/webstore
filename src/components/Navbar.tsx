@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { Menu, X, ShoppingCart, Users, Map, MessageSquare, Home, Video, LogIn, LogOut } from 'lucide-react';
+import { useState } from 'react';
+import { Menu, X, ShoppingCart, Users, Map, MessageSquare, Home, Video, LogIn, LogOut, ChevronDown } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '../lib/utils';
 import ServerStatus from './ServerStatus';
@@ -14,6 +14,9 @@ export default function Navbar() {
     { name: 'Home', path: '/', icon: Home },
     { name: 'Store', path: '/store', icon: ShoppingCart },
     { name: 'Leaderboard', path: '/leaderboard', icon: Users },
+  ];
+
+  const guideLinks = [
     { name: 'Staff Guide', path: '/guides/staff', icon: MessageSquare },
     { name: 'Media Guide', path: '/guides/media', icon: Video },
   ];
@@ -52,6 +55,39 @@ export default function Navbar() {
                   </Link>
                 );
               })}
+              
+              <div className="relative group">
+                <button className={cn(
+                  "flex items-center space-x-2 px-2 xl:px-4 py-2 rounded-md text-sm font-bold uppercase tracking-widest transition-all whitespace-nowrap",
+                  location.pathname.startsWith('/guides')
+                    ? "text-[var(--secondary)] scale-105"
+                    : "text-[var(--muted-foreground)] hover:text-[var(--secondary)] hover:scale-105"
+                )}>
+                  <span>Guides</span>
+                  <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />
+                </button>
+                <div className="absolute left-0 mt-2 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                  <div className="bg-[var(--card)] border border-[var(--border)] rounded-md shadow-xl py-2 mt-2 relative before:absolute before:-top-4 before:left-0 before:w-full before:h-4">
+                    {guideLinks.map((link) => {
+                      const isActive = location.pathname === link.path;
+                      return (
+                        <Link
+                          key={link.name}
+                          to={link.path}
+                          className={cn(
+                            "block px-4 py-2 text-sm font-bold uppercase tracking-widest transition-colors",
+                            isActive
+                              ? "text-[var(--secondary)] bg-[var(--muted)]"
+                              : "text-[var(--muted-foreground)] hover:text-[var(--secondary)] hover:bg-[var(--muted)]"
+                          )}
+                        >
+                          {link.name}
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -135,6 +171,32 @@ export default function Navbar() {
                 </Link>
               );
             })}
+            
+            <div className="pt-2 pb-1">
+              <div className="px-3 text-xs font-bold uppercase tracking-wider text-[var(--muted-foreground)] mb-2">
+                Guides
+              </div>
+              {guideLinks.map((link) => {
+                const Icon = link.icon;
+                const isActive = location.pathname === link.path;
+                return (
+                  <Link
+                    key={link.name}
+                    to={link.path}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={cn(
+                      "flex items-center space-x-3 px-3 py-3 rounded-md text-base font-medium",
+                      isActive 
+                        ? "bg-[var(--primary)] text-white" 
+                        : "text-[var(--muted-foreground)] hover:bg-[var(--muted)] hover:text-[var(--foreground)]"
+                    )}
+                  >
+                    <Icon className="w-5 h-5" />
+                    <span>{link.name}</span>
+                  </Link>
+                );
+              })}
+            </div>
             
             {user && (
               <button
